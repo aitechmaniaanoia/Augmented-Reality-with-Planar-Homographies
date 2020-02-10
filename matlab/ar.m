@@ -7,7 +7,8 @@ img2 = imread('../data/pano_right.jpg');
 
 [pt1, pt2] = matchPics(img1, img2);
 
-[H2to1] = computeH(pt1, pt2);
+%[H2to1] = computeH(pt1, pt2);
+[H2to1] = computeH_norm(pt1, pt2);
 
 % choose random points
 count = 55;

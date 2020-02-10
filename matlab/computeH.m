@@ -14,17 +14,10 @@ for i = 1:len
     A = [A; a];
 end
 % svd of A
-[U,S,V] = svd(A);
+[~,~,V] = svd(A);
 
 H = V(:,end);
 H2to1 = reshape(H,3,3);
-% F = v(:,-1)
-%F = V.';
-%F = V;
-%F = F(:,end);
-%F = reshape(F,[3,3]);
-% svd of F
-%[u,s,v] = svd(F);
-%s(3,3) = 0;
-%H2to1 = u*s*v;
+H2to1 = H2to1/H2to1(3,3);
+
 end

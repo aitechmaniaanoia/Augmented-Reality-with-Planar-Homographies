@@ -33,11 +33,18 @@ x2 = [x2 ones(len,1)].';
 
 x1_norm = T1*x1;
 x2_norm = T2*x2;
+
+%x1_norm = x1*scale1 + translate_1;
+%x2_norm = x2*scale2 + translate_2;
+
 % build matrix A
 A = [];
 for i = 1:len
-    a = [-x1_norm(1,i) -x1_norm(2,i) -1 0 0 0 x1_norm(1,i)*x2_norm(1,i) x1_norm(2,i)*x1_norm(1,i) x2_norm(1,i);
-         0 0 0 -x1_norm(1,i) -x1_norm(2,i) -1 x1_norm(1,i)*x2_norm(2,i) x1_norm(2,i)*x2_norm(2,i) x2_norm(2,i)];
+    %a = [-x1_norm(1,i) -x1_norm(2,i) -1 0 0 0 x1_norm(1,i)*x2_norm(1,i) x1_norm(2,i)*x1_norm(1,i) x2_norm(1,i);
+    %     0 0 0 -x1_norm(1,i) -x1_norm(2,i) -1 x1_norm(1,i)*x2_norm(2,i) x1_norm(2,i)*x2_norm(2,i) x2_norm(2,i)];
+    a = [-x2_norm(1,i) -x2_norm(2,i) -1 0 0 0 x2_norm(1,i)*x1_norm(1,i) x2_norm(2,i)*x2_norm(1,i) x1_norm(1,i);
+         0 0 0 -x2_norm(1,i) -x2_norm(2,i) -1 x2_norm(1,i)*x1_norm(2,i) x2_norm(2,i)*x1_norm(2,i) x1_norm(2,i)];
+
     A = [A; a];
 end
 
@@ -52,5 +59,5 @@ H2to1 = [V(1, 9) V(2, 9) V(3, 9);
 %[u, s, v] = svd(H2to1);
 %H2to1 = u(:, 1) * s(1,1) * v(:, 1).' + u(:, 2) * s(2,2) * v(:, 2).';
 %% Denormalization
-H2to1 = T2.'*H2to1*T1;
+H2to1 = T1\H2to1*T2;
 H2to1 = H2to1/H2to1(3,3);

@@ -15,7 +15,7 @@ end
 [desc2, locs2] = computeBrief(I2, features2.Location); %294
 %% Match features using the descriptors
 threshold = 10;
-indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', threshold); 
+indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', threshold, 'MaxRatio', 0.68); 
 
 locs1 = locs1(indexPairs(:,1),:);
 locs2 = locs2(indexPairs(:,2),:);

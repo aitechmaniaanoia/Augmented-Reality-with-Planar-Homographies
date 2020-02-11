@@ -1,30 +1,32 @@
 % Q3.3.1
-close all;
-clear all;
+%close all;
+%clear all;
 
-img1 = imread('../data/pano_left.jpg');
-img2 = imread('../data/pano_right.jpg');
+%ar_source = loadVid('../data/ar_source.mov');
+%book = loadVid('../data/book.mov');
+img_cover = imread('../data/cv_cover.jpg');
 
-[pt1, pt2] = matchPics(img1, img2);
+frame = size(ar_source,2);
+i = 1;
+% for loop each frame
 
-%[H2to1] = computeH(pt1, pt2);
-[H2to1] = computeH_norm(pt1, pt2);
+img_ar = ar_source(i).cdata;
+img_desk = book(i).cdata;
 
-% choose random points
-count = 55;
-[length, width] = size(img1);
-x = randi(length, count,1);
-y = randi(width, count,1);
+%% Extract features and match
+[locs1, locs2] = matchPics(img_cover, img_desk);
+%% Compute homography using RANSAC
+[bestH2to1, ~] = computeH_ransac(locs1, locs2);
+%% Scale harry potter image to template size
+scaled_img = imresize(img_ar, [size(img_cover,1) size(img_cover,2)]);
+%% Display warped image.
+imshow(warpH(scaled_img, inv(bestH2to1), size(img_desk)));
 
-random_pts1 = [x y];
-pts1 = [random_pts1 ones(count,1)];
+%% Display composite image
+imshow(compositeH(inv(bestH2to1), scaled_img, img_desk));
 
-pts2 = pts1*H2to1;
-pts2 = pts2./pts2(:,3);
-pts2(:,3) = [];
-random_pts2 = int16(pts2);
 
-figure;
-showMatchedFeatures(img1, img2, random_pts1, random_pts2, 'montage');
-title('Showing all matches');
+
+
+
 

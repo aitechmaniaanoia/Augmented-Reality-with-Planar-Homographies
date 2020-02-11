@@ -4,8 +4,10 @@ function [ bestH2to1, inliers, pt1, pt2] = computeH_ransac( locs1, locs2)
 n = 0;
 count = 4;
 len = size(locs1,1);
-iters = 10000;
-tolerance = 71400;
+%iters = 10000;
+%tolerance = 71400;
+iters = 50000; % for AR
+tolerance = 750000;
 
 for i = 1:iters
     idx = randperm(len, count);

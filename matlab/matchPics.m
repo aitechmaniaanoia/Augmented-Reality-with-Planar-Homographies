@@ -23,7 +23,7 @@ end
 threshold = 10;
 %indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', threshold, 'MaxRatio', 0.68); 
 %indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', 10, 'MaxRatio', 0.75);  % for AR
-indexPairs = matchFeatures(features_1, features_2, 'MatchThreshold', 10,'MaxRatio', 0.3); % SURF
+indexPairs = matchFeatures(features_1, features_2, 'MatchThreshold', 10,'MaxRatio', 0.4); % SURF
 
 locs1 = double(int16(locs_1(indexPairs(:,1),:).Location)); % SURF
 locs2 = double(int16(locs_2(indexPairs(:,2),:).Location));

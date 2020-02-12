@@ -6,10 +6,9 @@ count = 4;
 len = size(locs1,1);
 
 %e = 0.9; % outlirt ratio
-e = 0.9;
+e = 0.7;
 iters = int16(log(1-0.99)/log(1-(1-e).^4));
-%tolerance = 50; % for image
-tolerance = 3; % for AR
+tolerance = 0.2; % for AR
 
 for i = 1:iters
     idx = randperm(len, count);

@@ -14,6 +14,7 @@ hp_img = imread('../data/hp_cover.jpg');
 
 %% Scale harry potter image to template size
 % Why is this is important?
+% 
 scaled_hp_img = imresize(hp_img, [size(cv_img,1) size(cv_img,2)]);
 
 %% Display warped image.

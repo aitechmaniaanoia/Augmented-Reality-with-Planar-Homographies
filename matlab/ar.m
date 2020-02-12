@@ -1,21 +1,21 @@
 % Q3.3.1
-%close all;
-%clear all;
+close all;
+clear all;
 
-%ar_source = loadVid('../data/ar_source.mov');
-%book = loadVid('../data/book.mov');
+ar_source = loadVid('../data/ar_source.mov');
+book = loadVid('../data/book.mov');
 img_cover = imread('../data/cv_cover.jpg');
 
 frame = size(ar_source,2);
 %imgs = zeros(511, 480, 640, 3 );
 
-writerobj = VideoWriter('ar.avi'); 
+writerobj = VideoWriter('../result/ar.avi'); 
 writerobj.FrameRate = 25;
 
 open(writerobj);
 %i = 45;
 % for loop each frame
-for i = 1:22  %frame
+for i = 1:frame
 img_ar = ar_source(i).cdata;
 img_desk = book(i).cdata;
 
@@ -55,16 +55,5 @@ end
 close(writerobj);
 disp('video saved.');
 
-% %% save video
-% writerobj = VideoWriter('ar.avi'); 
-% writerobj.FrameRate = 10;
-% 
-% open(writerobj);
-% for j = 1:20  %frame
-%     img = imgs(j,:,:,:);
-%     img = resize(img, size(img,2),size(img,3),size(img,4));
-%     writeVideo(writerobj,img);
-% end
-% close(writerobj);
 
 

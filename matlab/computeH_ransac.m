@@ -5,10 +5,11 @@ n = 0;
 count = 4;
 len = size(locs1,1);
 
-e = 0.85; % outlirt ratio
+%e = 0.9; % outlirt ratio
+e = 0.9;
 iters = int16(log(1-0.99)/log(1-(1-e).^4));
 %tolerance = 50; % for image
-tolerance = 200; % for AR
+tolerance = 3; % for AR
 
 for i = 1:iters
     idx = randperm(len, count);
@@ -58,14 +59,14 @@ for i = 1:iters
         %bestH2to1 = comupteH_norm(pt1(idx,:), pt2(idx,:));
         inp1 = locs1(index,:);
         inp2 = locs2(index,:);
-        [bestH2to1] = computeH_norm(inp1, inp2);
+        bestH = H;
     %else
     %    inp1 = pt1;
     %    inp2 = pt2;
-        %[bestH2to1] = computeH_norm(inp1, inp2);
+        %[bestH2to1] = computeH_norm(inp1, inp2); % for hp
     end
     %[bestH2to1] = computeH_norm(inp1, inp2);
 end
-%Q2.2.3
+bestH2to1 = bestH;
 end
 

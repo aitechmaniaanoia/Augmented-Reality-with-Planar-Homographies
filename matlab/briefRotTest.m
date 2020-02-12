@@ -34,10 +34,11 @@ for i = 0:36
 end
 
 %% Display histogram
+x = 0:10:360;
 figure;
-histogram(hist1);
+histogram(hist1,x);
 title('Histogram of the count of matches using BRIEF descriptor');
 
 figure;
-histogram(hist2);
+histogram(hist2,x);
 title('Histogram of the count of matches using SURF descriptor');

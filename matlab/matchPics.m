@@ -16,7 +16,7 @@ end
 %% Match features using the descriptors
 threshold = 10;
 %indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', threshold, 'MaxRatio', 0.68); 
-indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', 10, 'MaxRatio', 0.71);  % for AR
+indexPairs = matchFeatures(desc1, desc2, 'MatchThreshold', 10, 'MaxRatio', 0.68);  % for AR
 
 locs1 = locs1(indexPairs(:,1),:);
 locs2 = locs2(indexPairs(:,2),:);

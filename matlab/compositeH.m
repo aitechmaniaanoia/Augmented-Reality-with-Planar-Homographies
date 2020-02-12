@@ -20,10 +20,11 @@ end
 %% Warp template by appropriate homography
 warp_template = warpH(template, H2to1, size(img));
 %% Use mask to combine the warped template and the image
+%composite_img = zeros(size(img));
 composite_img = img;
 %for i = 1:size(img,3)
 %composite_img(warp_mask==1) = 0;
-composite_img(warp_mask==1) = warp_template(warp_mask==1);
+composite_img(warp_mask~=0) = warp_template(warp_mask~=0);
 %composite_img(warp_mask==0) = img(warp_mask==0);
     
 %    composite_img(:,:,i) = com_img;

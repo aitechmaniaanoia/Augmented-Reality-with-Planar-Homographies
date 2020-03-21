@@ -1,1 +1,1 @@
-# CMPT762A2
+# Augmented Reality with Planar Homographies
